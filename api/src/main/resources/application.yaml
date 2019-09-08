@@ -1,0 +1,28 @@
+spring:
+  jpa:
+    properties:
+      hibernate.temp.use_jdbc_metadata_defaults: false
+    hibernate:
+        ddl-auto: create
+  datasource:
+    url: jdbc:mysql://localhost:3306/smartshares_db?serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: root
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/auth/realms/phil-softs
+com:
+  smartshare:
+    cors:
+      allowed-origins: '*'
+      allowed-methods: 'POST, PUT, GET, PATCH'
+      allowed-headers: '*'
+      exposed-headers: 'Cache-Control, Content-Language, Content-Type, Expires, Last-Modified, Pragma'
+      allow-credentials: true
+      max-age: 1800
+    env:
+      url: http://localhost:9000/
+server:
+  port: 9000

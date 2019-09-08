@@ -1,0 +1,46 @@
+version: '3.1'
+
+services:
+  mysqldb:
+    container_name: mysqldb
+    image: mysql:latest
+    volumes:
+      - ./data:/var/lib/mysql
+      - ./docker/mysql/:/docker-entrypoint-initdb.d
+    environment:
+      MYSQL_DATABASE: smartshares_db
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3306:3306"
+      
+  keycloak:
+    container_name: keycloak_server
+    image: jboss/keycloak
+    environment:
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: space123
+      KEYCLOAK_IMPORT: /docker/keycloak/realm-export.json
+      # DB_VENDOR: mysql
+      # DB_ADDR: jdbc:mysql//mysqldb:3306/keycloak?useSSL=false
+      # DB_USER: root
+      # DB_PASSWORD: root
+    volumes:
+      - ./docker/keycloak/realm-export.json:/docker/keycloak/realm-export.json
+    ports:
+      - "8080:8080"
+    # depends_on:
+    #   - mysqldb
+      
+  # app:
+  #   restart: always
+  #   build: ./api
+  #   working_dir: /api
+  #   volumes:
+  #     - ./api:/api
+  #     - ~/.m2:/root/.m2
+  #   ports:
+  #     - "9000:9000"
+  #   command: mvn clean spring-boot:run
+  #   links:
+  #     - mysqldb
+  #     - keycloak
