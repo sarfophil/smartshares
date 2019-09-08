@@ -21,13 +21,6 @@ Short Shareholder Management  API using Spring boot
 ```cmd
 > docker  compose up -d
 ```
-Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
-
-
-### Frameworks
-
-- Spring Framework
-
 
 ### Assignment of Status codes
 
