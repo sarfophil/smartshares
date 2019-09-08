@@ -14,11 +14,11 @@ Short Shareholder Management  API using Spring boot
 ## Getting Started
 
 - Using Maven
-```bash
+```cmd
 > mvnw clean spring-boot:run
 ```
--Using Docker
-```bash
+- Using Docker
+```cmd
 > docker  compose up -d
 ```
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install foobar.
